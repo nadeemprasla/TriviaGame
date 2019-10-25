@@ -1,15 +1,61 @@
-h1{
-    font-size: 40px;
+body{
+    background-color:lightblue;
 }
-.col-xs-1{
+div {
+    margin: 10px 0;
+}
+.timer, .starter, .questionstyle, .titlebar{
+    background-color: white;
+    text-decoration: un;
     font-size: 20px;
-}
-
-.questions{
-    font-size: 40px;
-}
-.answer {
-    font-size: 40px;
     padding: 10px 10px;
-
 }
+h1{
+    padding: 25px 25px;
+    text-align: center;
+    font-size: 72px;
+  background: -webkit-linear-gradient(#eee, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#nextAnsw1:hover {
+    background-color: yellow;
+    border: 1px solid black;
+    font-size: 30px;
+    color: blue;
+}
+#nextAnsw2:hover {
+    background-color: yellow;
+    border: 1px solid black;
+    font-size: 30px;
+    color: blue;
+}
+#nextAnsw3:hover {
+    background-color: yellow;
+    border: 1px solid black;
+    font-size: 30px;
+    color: blue;
+}
+#nextAnsw0:hover {
+    background-color: yellow;
+    border: 1px solid black;
+    font-size: 30px;
+    color: blue;
+  }
+
+  .starter{
+    text-align: center;
+    font-size: 72px;
+  background: -webkit-linear-gradient(#eee, blue);
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;
+  }
+  
+  #endGame{
+    padding: 25px 25px;
+    text-align: center;
+    font-size: 40px;
+  background: -webkit-linear-gradient(#eee, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
