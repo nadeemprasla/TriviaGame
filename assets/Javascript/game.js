@@ -16,19 +16,25 @@ $(document).ready(function () {
             q: "What my Favorite Color?",
             a: "Blue"
         }
+
     ];
     var choices = {
         0: ["Chocolate Milk", "Peanut Butter", "Rabies", "Cheese Stick"],
         1: ["2001", "1989", "1900", "2012"],
         2: ["Yes", "No"],
-        3: ["Red", "Green", "Blue", "Yellow"]
-
-
+        3: ["Red", "Green", "Blue", "Yellow"],
+        4: [],
+        5: [],
+        6: [],
+        7: [],
+        8: [],
+        9: [],
     };
 
 
     var correct = 0;
     var wrong = 0;
+    var foo = foo || null;
 
     $("#start").on("click", function () {
         var divSet = document.getElementById("start");
@@ -45,24 +51,24 @@ $(document).ready(function () {
     };
     function decrement() {
         number--;
-        $("#countDown").text(number)
+        $("#countDown").text(number);
         if (number === 0) {
             clearInterval(intervalId);
-            alert("Time Up!")
+            answer();
         }
 
-    }
+    };
 
     function startGame() {
-        number = 30;
+        number = 4;
         $("#time").text("Time Reamining: ");
-        $("#countDown").text(number)
+        $("#countDown").text(number);
         run();
         displayQ();
 
     };
 
-    var x = 0
+    var x = 0;
     function displayQ() {
         var divSelect = document.getElementById("allQuestions");
         divSelect.innerHTML = "";
@@ -79,54 +85,73 @@ $(document).ready(function () {
             divSelect.append(newAnsw);
             var ansCho = document.getElementById(newAnsw.id);
             ansCho.textContent = choices[x][i];
-            ansCho.setAttribute("data-name", "nextQuestion" + x)
+            ansCho.setAttribute("data-name", "nextQuestion" + x);
         }
-        clicker();
     }
 
-    function clicker() {
-        $(".answer").on("click", answer)
-    };
+    $(".answer").on("click", answer);
+
 
     function answer() {
-
-        console.log(event);
-        clearInterval(intervalId);
-        var currentQ = event.target.dataset.name;
-        var setIndex = currentQ.substring(12);
-        var currentA = qnA[setIndex].a;
-        var userInput = event.target.innerText;
-        console.log(userInput);
-        console.log(currentA);
-        var divSelect = document.getElementById("allQuestions");
-        divSelect.innerHTML = "";
-        var newQuest = document.createElement("div");
-        newQuest.id = "rightWrongAnswer";
-        newQuest.className = "col answer";
-        divSelect.appendChild(newQuest);
-        if (currentA === userInput) {
-            $("#rightWrongAnswer").html("Correct Answer: " + qnA[x].a);
-            correct++;
-            if (x === 2) {
-                endGame();
-            };
-            x++;
-            console.log(correct);
-            setTimeout(startGame, 5000);
-
-        }
-        else {
+        if (typeof(variable) == "undefined") {
+            var divSelect = document.getElementById("allQuestions");
+            divSelect.innerHTML = "";
             $("#rightWrongAnswer").html("Wrong");
             $("#rightWrongAnswer").append("<br>");
             $("#rightWrongAnswer").append("Correct Answer: " + qnA[x].a);
             wrong++;
             if (x === 2) {
                 endGame();
-            };
-            x++;
-            console.log(wrong);
-            setTimeout(startGame, 5000);
+            }
+            else {
+                x++;
+                console.log(wrong);
+                setTimeout(startGame, 5000);
+            }
+        }
+        else {
+            console.log(event);
+            clearInterval(intervalId);
+            var currentQ = event.target.dataset.name;
+            var setIndex = currentQ.substring(12);
+            var currentA = qnA[setIndex].a;
+            var userInput = event.target.innerText;
+            console.log(userInput);
+            console.log(currentA);
+            var divSelect = document.getElementById("allQuestions");
+            divSelect.innerHTML = "";
+            var newQuest = document.createElement("div");
+            newQuest.id = "rightWrongAnswer";
+            newQuest.className = "col answer";
+            divSelect.appendChild(newQuest);
+            if (currentA === userInput) {
+                $("#rightWrongAnswer").html("Correct Answer: " + qnA[x].a);
+                correct++;
+                if (x === 2) {
+                    endGame();
+                }
+                else {
+                    x++;
+                    console.log(correct);
+                    setTimeout(startGame, 5000);
+                }
 
+            }
+            else {
+                $("#rightWrongAnswer").html("Wrong");
+                $("#rightWrongAnswer").append("<br>");
+                $("#rightWrongAnswer").append("Correct Answer: " + qnA[x].a);
+                wrong++;
+                if (x === 2) {
+                    endGame();
+                }
+                else {
+                    x++;
+                    console.log(wrong);
+                    setTimeout(startGame, 5000);
+                }
+
+            }
         }
     }
 
@@ -139,10 +164,19 @@ $(document).ready(function () {
         divSelect.appendChild(newQuest);
         $("#endGame").html("Correct: " + correct);
         $("#endGame").append("Wrong: " + wrong);
-        setTimeout( , 10000)
+        setTimeout(startOver, 5000);
+    };
+    function startOver() {
+        correct = 0;
+        wrong = 0;
+        x = 0;
+        var divSelect = document.getElementById("allQuestions");
+        divSelect.innerHTML = "";
+        // var divSet = document.getElementById("start");
+        $("#start").html("Start");
+
     }
 })
-
 
 
 /*
